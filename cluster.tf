@@ -1,3 +1,4 @@
+# Creates DOCDB cluster
 resource "aws_docdb_cluster" "docdb" {
   cluster_identifier      = "roboshop-${var.ENV}-docdb"
   engine                  = "docdb"
@@ -5,6 +6,14 @@ resource "aws_docdb_cluster" "docdb" {
   master_password         = "roboshop1"
   skip_final_snapshot     = true            # value will be false in production. In lab, we will be using true
   db_subnet_group_name    = aws_docdb_subnet_group.docdb.name
+}
+# Creates DocDB instances and adds to the cluster
+
+resource "aws_docdb_cluster_instance" "cluster_instances" {
+  count              = 2
+  identifier         = "docdb-cluster-demo-${count.index}"
+  cluster_identifier = aws_docdb_cluster.default.id
+  instance_class     = "db.r5.large"
 }
 
 

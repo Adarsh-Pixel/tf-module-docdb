@@ -6,8 +6,8 @@ resource "aws_security_group" "allows_docdb" {
 
   ingress {
     description              = "docdb from private network"
-    from_port                = 27017
-    to_port                  = 27017
+    from_port                = var.DOCDB_INSTANCE_PORT
+    to_port                  = var.DOCDB_INSTANCE_PORT
     protocol                 = "tcp"
     cidr_blocks              = [data.terraform_remote_state.vpc.outputs.VPC_CIDR, data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
   }

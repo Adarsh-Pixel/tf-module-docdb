@@ -12,7 +12,7 @@ resource "null_resource" "schema" {
         ls -ltr
         mongo --tls --host ${aws_docdb_cluster.docdb.endpoint} --tlsCAFile global-bundle.pem --username admin1 --password roboshop1 < catalogue.js
         mongo --tls --host ${aws_docdb_cluster.docdb.endpoint} --tlsCAFile global-bundle.pem --username admin1 --password roboshop1 < users.js
-        EOF
+     EOF
 
   }
 }

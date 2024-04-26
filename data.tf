@@ -15,7 +15,7 @@ data "aws_secretsmanager_secret" "secrets" {
 
 # fetches the secrets version from the above server (fetches the secret)
 resource "aws_secretsmanager_secret_version" "secret_version" {
-  secret_id     = data.aws_secretsmanager_secret.secret_version.id
+  secret_id     = data.aws_secretsmanager_secret.secrets.id
 }
 
 # output "example" {
